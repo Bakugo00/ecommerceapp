@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:ecommerce_app/model/user.dart';
 import 'package:ecommerce_app/services/firestore_service.dart';
 import 'package:ecommerce_app/view/auth/loginpage.dart';
-import 'package:ecommerce_app/view/pagetwo.dart';
+import 'package:ecommerce_app/view/homeview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -34,7 +34,8 @@ class AuthViewModel extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
+    email.dispose();
+    password.dispose();
     super.onClose();
   }
 
@@ -87,7 +88,7 @@ class AuthViewModel extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(
           email: email.text.trim(), password: password.text.trim());
-      Get.offAll(() => pageTwo());
+      Get.offAll(() => Homepage());
     } catch (e) {
       Get.snackbar('error occured', e.toString());
     }
@@ -103,13 +104,13 @@ class AuthViewModel extends GetxController {
           email: email.text.trim(), password: password.text.trim()).then(saveuserinfo
           
           );
-      Get.offAll(() => pageTwo());
+      Get.offAll(() => Homepage());
     } catch (e) {
       Get.snackbar('error occured', e.toString());
     }
   }
 
   FutureOr<Null> saveuserinfo(value) async{ 
-      await FirestoreClass().addUserToFireStore(UserModel(userId: value.user!.uid, email: value.user!.email, name: name.toString(), pic: ''));
+      await FirestoreClass().addUserToFireStore(UserModel(userId: value.user!.uid, email: value.user!.email, name: name.text, pic: ''));
       }
 }

@@ -45,6 +45,7 @@ class registerView extends GetWidget<AuthViewModel> {
               ),
               TextFormField(
                 decoration: InputDecoration(hintText: " Name "),
+                controller: controller.name,
               ),
               SizedBox(
                 height: 40.0,
