@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/model/binding.dart';
+import 'package:ecommerce_app/model/viewcontroller.dart';
 import 'package:ecommerce_app/view/auth/loginpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: mybindings(),
       debugShowCheckedModeBanner: false,
-      home: loginpage(),
+      home: ControlView(),
     );
   }
 }

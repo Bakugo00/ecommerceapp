@@ -13,9 +13,9 @@ class custombutton extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(8.0))),
       padding: EdgeInsets.all(10.0),
       color: Color.fromARGB(255, 74, 195, 104),
-      onPressed: (() {
+      onPressed: () {
         onpressed;
-      }),
+      },
       child: Container(
         alignment: Alignment.center,
         child: Text(

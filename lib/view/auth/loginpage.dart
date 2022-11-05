@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/model/authviewmodel.dart';
+import 'package:ecommerce_app/view/auth/register.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,11 +22,14 @@ class loginpage extends GetWidget<AuthViewModel> {
                     "Welcome",
                     style: TextStyle(fontSize: 30.0),
                   ),
-                  Text(
-                    "Signup",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 74, 195, 104),
-                        fontSize: 16.0),
+                  MaterialButton(
+                    onPressed: (() => Get.offAll(() => registerView())),
+                    child: Text(
+                      "Signup",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 74, 195, 104),
+                          fontSize: 16.0),
+                    ),
                   )
                 ],
               ),
@@ -43,9 +47,10 @@ class loginpage extends GetWidget<AuthViewModel> {
               SizedBox(
                 height: 10.0,
               ),
-              TextField(
+              TextFormField(
                 decoration:
                     InputDecoration(hintText: " quelquechose@gmail.com "),
+                controller: controller.email,
               ),
               SizedBox(
                 height: 40.0,
@@ -54,8 +59,9 @@ class loginpage extends GetWidget<AuthViewModel> {
               SizedBox(
                 height: 10.0,
               ),
-              TextField(
+              TextFormField(
                 decoration: InputDecoration(hintText: " ******** "),
+                controller: controller.password,
               ),
               SizedBox(
                 height: 20.0,
@@ -67,8 +73,21 @@ class loginpage extends GetWidget<AuthViewModel> {
               SizedBox(
                 height: 20.0,
               ),
-              custombutton(
-                text: "sign in ",
+              Center(
+                child: MaterialButton(
+                  onPressed: controller.signin,
+                  child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Sign in",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                  color: Color.fromARGB(255, 74, 195, 104),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                  padding: EdgeInsets.all(10.0),
+                ),
               ),
               SizedBox(
                 height: 20.0,
@@ -110,7 +129,7 @@ class loginpage extends GetWidget<AuthViewModel> {
               ),
               MaterialButton(
                 onPressed: () {
-                  controller.FacesigninMethod();
+                  controller.signInWithFacebook();
                 },
                 child: Row(
                   children: [
