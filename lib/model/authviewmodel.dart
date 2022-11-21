@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:ecommerce_app/model/user.dart';
 import 'package:ecommerce_app/services/firestore_service.dart';
 import 'package:ecommerce_app/view/auth/loginpage.dart';
-import 'package:ecommerce_app/view/homeview.dart';
+import 'package:ecommerce_app/view/pages/homeview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -50,9 +50,9 @@ class AuthViewModel extends GetxController {
     );
     UserCredential userCredential =
         await _auth.signInWithCredential(authCredential).then((value) {
-          saveuserinfo(value);
-          throw 0;
-        });
+      saveuserinfo(value);
+      throw 0;
+    });
     print(userCredential);
   }
 
@@ -75,7 +75,9 @@ class AuthViewModel extends GetxController {
       AccessToken? _accessToken = loginResult.accessToken;
       facebookAuthCredential =
           FacebookAuthProvider.credential(_accessToken!.token);
-      await _auth.signInWithCredential(facebookAuthCredential).then((value) {saveuserinfo(value);});
+      await _auth.signInWithCredential(facebookAuthCredential).then((value) {
+        saveuserinfo(value);
+      });
     } else {
       print('ResultStatus: ${loginResult.status}');
       print('Message: ${loginResult.message}');
@@ -88,7 +90,7 @@ class AuthViewModel extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(
           email: email.text.trim(), password: password.text.trim());
-      Get.offAll(() => Homepage());
+      Get.offAll(() => Homeview());
     } catch (e) {
       Get.snackbar('error occured', e.toString());
     }
@@ -98,19 +100,24 @@ class AuthViewModel extends GetxController {
     await _auth.signOut();
     Get.offAll(() => loginpage());
   }
+
   void signup() async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email.text.trim(), password: password.text.trim()).then(saveuserinfo
-          
-          );
-      Get.offAll(() => Homepage());
+      await _auth
+          .createUserWithEmailAndPassword(
+              email: email.text.trim(), password: password.text.trim())
+          .then(saveuserinfo);
+      Get.offAll(() => Homeview());
     } catch (e) {
       Get.snackbar('error occured', e.toString());
     }
   }
 
-  FutureOr<Null> saveuserinfo(value) async{ 
-      await FirestoreClass().addUserToFireStore(UserModel(userId: value.user!.uid, email: value.user!.email, name: name.text, pic: ''));
-      }
+  FutureOr<Null> saveuserinfo(value) async {
+    await FirestoreClass().addUserToFireStore(UserModel(
+        userId: value.user!.uid,
+        email: value.user!.email,
+        name: name.text,
+        pic: ''));
+  }
 }
