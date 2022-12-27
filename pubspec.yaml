@@ -43,6 +43,7 @@ dependencies:
   flutter_login_facebook: ^1.6.1
   flutter_facebook_auth: ^5.0.0+2
   cloud_firestore: ^4.0.3
+  sqflite: ^2.2.0+3
 
 dev_dependencies:
   flutter_test:
@@ -81,7 +82,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+      - family: sourcesans
+        fonts:
+          - asset: assets/fonts/SourceSansPro-Regular.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

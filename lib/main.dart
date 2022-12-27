@@ -21,6 +21,9 @@ class MyApp extends StatelessWidget {
       initialBinding: mybindings(),
       debugShowCheckedModeBanner: false,
       home: ControlView(),
+      theme: ThemeData(
+        fontFamily: 'sourcesans'
+      ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/model/categories_model.dart';
 import 'package:ecommerce_app/model/product_model.dart';
-import 'package:ecommerce_app/services/home_service.dart';
+import 'package:ecommerce_app/Core/services/home_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

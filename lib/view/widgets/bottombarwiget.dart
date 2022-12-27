@@ -29,7 +29,7 @@ class _bottomwidgetState extends State<bottomwidget> {
                       currentpage = 0;
                     });
                   }),
-                  icon: Image.asset('assets/icons8-buying-96.png'),
+                  icon: Image.asset('assets/images/icons8-buying-96.png'),
                   color: currentpage == 0
                       ? Color.fromARGB(255, 44, 167, 97)
                       : Colors.black,

@@ -28,21 +28,21 @@ _bottomnavigationbar() {
         BottomNavigationBarItem(
           label: 'Home',
           icon: Image.asset(
-            'assets/cottage.png',
+            'assets/images/cottage.png',
             height: 20,
           ),
         ),
         BottomNavigationBarItem(
           label: 'Shopping carte',
           icon: Image.asset(
-            'assets/icons8-shopping-cart-96.png',
+            'assets/images/icons8-shopping-cart-96.png',
             height: 20,
           ),
         ),
         BottomNavigationBarItem(
           label: 'User account',
           icon: Image.asset(
-            'assets/icons8-account-96.png',
+            'assets/images/icons8-account-96.png',
             height: 20,
           ),
         ),

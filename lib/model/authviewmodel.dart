@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:ecommerce_app/model/user.dart';
-import 'package:ecommerce_app/services/firestore_service.dart';
+import 'package:ecommerce_app/Core/services/firestore_service.dart';
 import 'package:ecommerce_app/view/auth/loginpage.dart';
 import 'package:ecommerce_app/view/pages/homeview.dart';
 import 'package:firebase_auth/firebase_auth.dart';

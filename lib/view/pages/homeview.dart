@@ -6,6 +6,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:ecommerce_app/model/authviewmodel.dart';
 import 'package:get/get.dart';
 
+import 'detailesview.dart';
+
 class Homeview extends GetWidget<AuthViewModel> {
   List<String> list = [''];
   @override
@@ -42,38 +44,7 @@ class Homeview extends GetWidget<AuthViewModel> {
                       Container(
                         height: 100,
                         child: GetBuilder<homeviewmodel>(
-                          builder: (controller) => Container(
-                            child: ListView.separated(
-                              itemCount: controller.categoryModel.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    child: Column(
-                                      children: [
-                                        Image.network(
-                                          controller
-                                              .categoryModel[index].image!,
-                                          width: 30,
-                                        ),
-                                        CustomText(
-                                          text: controller
-                                              .categoryModel[index].name!,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return SizedBox(
-                                  width: 20,
-                                );
-                              },
-                            ),
-                          ),
+                          builder: (controller) => categorieslist(controller),
                         ),
                       ),
                       SizedBox(
@@ -88,64 +59,104 @@ class Homeview extends GetWidget<AuthViewModel> {
     );
   }
 
+  ListView categorieslist(homeviewmodel controller) {
+    return ListView.separated(
+      itemCount: controller.categoryModel.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {},
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              child: Column(
+                children: [
+                  Image.network(
+                    controller.categoryModel[index].image!,
+                    width: 30,
+                  ),
+                  CustomText(
+                    text: controller.categoryModel[index].name!,
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return SizedBox(
+          width: 20,
+        );
+      },
+    );
+  }
+
   Widget listviewproducts() {
     return GetBuilder<homeviewmodel>(
-        builder: (controller) => Container(
+        builder: (controller) => SizedBox(
               height: 400,
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade100,
-                                boxShadow: [
-                                  BoxShadow(
-                                      offset: Offset.fromDirection(4, -10),
-                                      color: Colors.grey.shade100,
-                                      blurRadius: 10)
-                                ],
-                                borderRadius: BorderRadius.circular(50)),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.network(
-                                controller.products[index].image!,
-                                height: 220,
+                    return GestureDetector(
+                      onTap: () {
+                        Get.to(() => detailes(
+                              product: controller.products[index],
+                            ));
+                      },
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade100,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        offset: Offset.fromDirection(4, -10),
+                                        color: Colors.grey.shade100,
+                                        blurRadius: 10)
+                                  ],
+                                  borderRadius: BorderRadius.circular(50)),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image.network(
+                                  controller.products[index].image!,
+                                  height: 220,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          CustomText(
-                            text: controller.products[index].name!,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 16,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            width: 250,
-                            child: CustomText(
-                              text: controller.products[index].description!,
-                              fontWeight: FontWeight.w200,
-                              fontSize: 14,
-                              maxLine: 1,
+                            SizedBox(
+                              height: 20,
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          // CustomText(
-                          //   text: controller.products[index].price!,
-                          //   fontWeight: FontWeight.normal,
-                          //   color: Colors.green,
-                          //   fontSize: 20,
-                          // ),
-                        ]);
+                            CustomText(
+                              text: controller.products[index].name!,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              width: 250,
+                              child: CustomText(
+                                text: controller.products[index].description!,
+                                fontWeight: FontWeight.w200,
+                                fontSize: 14,
+                                maxLine: 1,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            CustomText(
+                              text: controller.products[index].price!,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.green,
+                              fontSize: 15,
+                            ),
+                          ]),
+                    );
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(

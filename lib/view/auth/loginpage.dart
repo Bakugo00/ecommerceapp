@@ -111,7 +111,7 @@ class loginpage extends GetWidget<AuthViewModel> {
                       height: 35,
                       width: 35,
                       child: Image.asset(
-                        'assets/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png',
+                        'assets/images/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png',
                       ),
                     ),
                     SizedBox(
@@ -137,7 +137,7 @@ class loginpage extends GetWidget<AuthViewModel> {
                       height: 35,
                       width: 35,
                       child: Image.asset(
-                        'assets/facebook-logo-icon-facebook-icon-png-images-icons-and-png-backgrounds-1.png',
+                        'assets/images/facebook-logo-icon-facebook-icon-png-images-icons-and-png-backgrounds-1.png',
                       ),
                     ),
                     SizedBox(

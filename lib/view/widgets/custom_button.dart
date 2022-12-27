@@ -1,10 +1,12 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class custombutton extends StatelessWidget {
   String text;
   Function? onpressed;
-
-  custombutton({this.text = "", this.onpressed});
+  double? fontSize;
+  custombutton({this.text = "", this.onpressed,this.fontSize});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class custombutton extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           text,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white,fontSize: fontSize),
         ),
       ),
     );
